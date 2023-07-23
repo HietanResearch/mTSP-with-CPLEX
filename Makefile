@@ -100,6 +100,9 @@ execute_graph: execute graph
 reexecute: clean execute
 	echo "Make: Done reexecute"
 
+reexecute_graph: reexecute graph
+	echo "Make: Done rexecute_graph"
+
 run:
 	./$(TARGET) $(PARAMETER) $(NODES_CSV) $(ROUTES_CSV)
 	echo "Make: Done run"
