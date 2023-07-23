@@ -94,7 +94,7 @@ rebuild: clean all
 execute: all run
 	echo "Make: Done execute"
 
-execute_all: execute graph
+execute_graph: execute graph
 	echo "Make: Done execute_all"
 
 reexecute: clean execute
@@ -104,7 +104,7 @@ run:
 	./$(TARGET) $(PARAMETER) $(NODES_CSV) $(ROUTES_CSV)
 	echo "Make: Done run"
 
-run_all: run graph
+run_graph: run graph
 	echo "Make: Done run_all"
 
 clean:
