@@ -28,14 +28,16 @@ This program aims to solve the multiple Traveling Salesman Problem (mTSP), which
 * Move directory.
 	* `cd mTSP-with-CPLEX`
 * Open `Makefile`, and set variable `MY_CPLEX_ROOT_DIR` where your CPLEX is installed.
-  	* Example1 : Default Linux : `MY_CPLEX_ROOT_DIR := /opt/ibm/ILOG/CPLEX_Studio****`
-  	* Example2 : Default Mac OS X : `MY_CPLEX_ROOT_DIR := /Applications/CPLEX_Studio****`
+  	* Example1(Default Linux) : `MY_CPLEX_ROOT_DIR := /opt/ibm/ILOG/CPLEX_Studio****`
+  	* Example2(Default Mac OS X) : `MY_CPLEX_ROOT_DIR := /Applications/CPLEX_Studio****`
+  	* (`****` means CPLEX version)
 * Compile C++ source files.
 	* `make all`
 * Run the executable and make graph.
 	* `make run_all`
 * Confirm the results.
 	* `open out/graph_**************.pdf`
+	* (`**************` means time infomation)
 
 ## Makefile
 
