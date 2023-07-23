@@ -18,7 +18,7 @@ This program aims to solve the multiple Traveling Salesman Problem (mTSP), which
 * GCC (when using Linux)
 * Clang (when using Max OS X)
 * R
-* igraph R package
+* igraph R package (To install, type `install.packages("igraph")` in the R console.)
 
 ## Usage
 
@@ -27,6 +27,9 @@ This program aims to solve the multiple Traveling Salesman Problem (mTSP), which
 	* `git clone git@github.com:HietanResearch/mTSP-with-CPLEX.git`
 * Move directory.
 	* `cd mTSP-with-CPLEX`
+* Open `Makefile`, and set variable `MY_CPLEX_ROOT_DIR` where your CPLEX is installed.
+  	* Example1 : Default Linux : `MY_CPLEX_ROOT_DIR := /opt/ibm/ILOG/CPLEX_Studio****`
+  	* Example2 : Default Mac OS X : `MY_CPLEX_ROOT_DIR := /Applications/CPLEX_Studio****`
 * Compile C++ source files.
 	* `make all`
 * Run the executable and make graph.
@@ -37,28 +40,28 @@ This program aims to solve the multiple Traveling Salesman Problem (mTSP), which
 ## Makefile
 
 * `all`: Compile all source files
-* `execute`: Compile and execute
-* `clean`: delete generated files
+* `rebuild`: Do `clean` and `all`
+* `execute`: Do `all` and `run`
+* `execute_all`: Do `execute` and make graph
+* `reexecute`: Do `clean` and `execute`
+* `run`: Run executable file
+* `run_all`: Do `run` and make graph
+* `clean`: delete all generated files
 
 ## Integer programming formulations
 
 $$
 	\large
 	\begin{array}{lll}
-		\mathrm{minimize}	& \displaystyle \sum_{u \in V} \sum_{v \in V, v \neq u} d_{uv} x_{uv}	& 																						\\
-		\mathrm{s.t.}    	& \displaystyle \sum_{u \in V, u \neq v} x_{uv} = 1,									& v \in V,																		\\
-											& \displaystyle \sum_{u \in V, u \neq v} x_{vu} = 1,									& v \in V,																		\\
-											& y_u - y_v + \left| V \right| x_{uv} \leq \left| V \right| - 1,			& u,v \in V \backslash \\{ s \\} , u \neq v,	\\
-											& x_{uv} \in \{ 0, 1 \} ,																							& u,v \in V, u \neq v,												\\
-											& y_s = 0, 																														& 																						\\
-											& 1 \leq y_v \leq \left| V \right| - 1,																						& v \in V \backslash \\{ s \\}.							
+		\mathrm{minimize}	& \displaystyle \sum_{(i, j) \in A} c_{ij} x_{ij}	& \\
+		\mathrm{s.t.}    	& \displaystyle \sum_{j=2}^{n} x_{1j} = m, & \\
+											& \displaystyle \sum_{i=2}^{n} x_{i1} = m, & \\
+											& \displaystyle \sum_{i=1}^{n} x_{ij} = 1, & j = 2, ... , n, \\
+					 						& \displaystyle \sum_{j=1}^{n} x_{ij} = 1, & i = 2, ... , n, \\
+											& u_i + (L - 2) x_{1i} - x_{i1} \leq L - 1, & i = 2, ... , n, \\
+					 						& u_i + x_{1i} + (2 - K) x_{i1} \geq 2,				 & i = 2, ... , n, \\
+											& x_{1i} + x_{i1} \leq 1, 								 & i = 2, ... , n, \\
+					 						& u_i - u_j + L x_{ij} + (L - 2) x_{ji} \leq L - 1, & 2 \leq i \neq j \leq n, \\
+											& x_{ij} \in \lbrace 0, 1 \rbrace, \forall (i, j) \in A. & 
 	\end{array}
 $$
-
-## Structure
-
-* `main.cpp`
-* `model.cpp`
-* `data.cpp`
-* `node.cpp`
-* `solver.cpp`
