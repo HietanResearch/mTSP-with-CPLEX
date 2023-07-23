@@ -1,6 +1,6 @@
-# Traveling Salesman Problem with CPLEX
+# multiple Traveling Salesman Problem with CPLEX
 
-This program aims to solve the Traveling Salesman Problem (TSP), which is one of the combinatorial optimization problems, using the mathematical programming solver [IBM® CPLEX® Optimizer](https://www.ibm.com/products/ilog-cplex-optimization-studio/cplex-optimizer).
+This program aims to solve the multiple Traveling Salesman Problem (mTSP), which is one of the combinatorial optimization problems, using the mathematical programming solver [IBM® CPLEX® Optimizer](https://www.ibm.com/products/ilog-cplex-optimization-studio/cplex-optimizer).
 
 ## Requirements
 
@@ -18,14 +18,15 @@ This program aims to solve the Traveling Salesman Problem (TSP), which is one of
 * GCC (when using Linux)
 * Clang (when using Max OS X)
 * R
+* igraph R package
 
 ## Usage
 
 * Get the code from GitHub.
-	* `git clone https://github.com/HietanResearch/TSP-with-CPLEX.git`
-	* `git clone git@github.com:HietanResearch/TSP-with-CPLEX.git`
+	* `git clone https://github.com/HietanResearch/mTSP-with-CPLEX.git`
+	* `git clone git@github.com:HietanResearch/mTSP-with-CPLEX.git`
 * Move directory.
-	* `cd TSP-with-CPLEX`
+	* `cd mTSP-with-CPLEX`
 * Compile C++ source files.
 	* `make all`
 * Run the executable and make graph.
