@@ -9,7 +9,6 @@ namespace solver {
 		int K = my_model.getK();
 		int L = my_model.getL();
 		std::vector<std::vector<float>> c = my_model.getC();
-
 		IloEnv env;
 		IloModel model(env);
 
@@ -214,22 +213,31 @@ namespace solver {
 				break;
 			}
 		}
-		result.at(y).at(next) = ind;
+		result.at(y).at(next) = ind + 1;
+		std::cout << " -> " << setw(3) << next;
+		this->each_cost.at(ind) += this->my_model.getCost(y, next);
 		if(next != 0) findRoute(next, ind);
 	}
 
 	void Solver::setNumber() {
-		int ind = 1;
+		int ind = 0;
 		for(int x = 0; x < (int)result.size(); x++) {
 			if(result.at(0).at(x)) {
+				std::cout << setw(2) << ind << " : ";
+				std::cout << setw(3) << 0 << " -> " << setw(3) << x ;
+				this->each_cost.at(ind) += this->my_model.getCost(0, x);
 				findRoute(x, ind);
-				result.at(0).at(x) = ind;
+				result.at(0).at(x) = ind + 1;
 				ind++;
+				std::cout << std::endl;
 			}
 		}
 	}
 
 	void Solver::printResult(std::ofstream& file) {
+		this->each_cost = vector<float>(this->my_model.getM(), 0);
+
+		std::cout << std::endl << "***** The routes of each salesmans *****" << std::endl;
 		setNumber();
 		for(vector<int> r : result) {
 			for(int i = 0; i < (int)r.size(); i++) {
@@ -238,5 +246,12 @@ namespace solver {
 			}
 			file << std::endl;
 		}
+
+		std::cout << std::endl << "***** The costs of each salesmans *****" << std::endl;
+		for(int i = 0; i < (int)each_cost.size(); i++) {
+			std::cout << setw(2) << i << " : ";
+			std::cout << each_cost.at(i) << std::endl;
+		}
+		std::cout << std::endl;
 	}
 }

@@ -29,6 +29,10 @@ namespace model {
 		return c;
 	}
 
+	float Model::getCost(int y, int x) const {
+		return c.at(y).at(x);
+	}
+
 	void Model::generateRandom() {
 		std::random_device rd;
 		std::mt19937 mt;

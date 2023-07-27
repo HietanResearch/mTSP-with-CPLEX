@@ -3,6 +3,7 @@
 #include "model.hpp"
 #include <ilcplex/ilocplex.h>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <string>
 
@@ -13,6 +14,7 @@ namespace solver {
 		private:
 			model::Model my_model;
 			std::vector<std::vector<int>> result;
+			std::vector<float> each_cost;
 		public:
 			Solver(model::Model arg_Model);
 			bool solve();

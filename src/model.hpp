@@ -26,6 +26,7 @@ namespace model {
 			int getL() const;
 			void setSeed(int num);
 			std::vector<std::vector<float>> getC() const;
+			float getCost(int y, int x) const;
 			void generateRandom();
 			friend std::ofstream& operator<<(std::ofstream& out, const Model& g);
 	};
