@@ -34,7 +34,7 @@ for(y in 1:nrow(routes)){
 
 g <- graph(edges=edges_arg)
 
-shape_arg <- c("square", rep("circle", times=(vcount(g))))
+shape_arg <- c("square", rep("circle", times=(vcount(g)-1)))
 
 pdf(output_filename)
 
@@ -43,7 +43,9 @@ plot(g,
 	 vertex.shape=shape_arg,
 	 vertex.color="#333333",
 	 vertex.size=5,
-	 vertex.label=NA,
+	 vertex.label=c(0:(vcount(g)-1)),
+	 vertex.label.color="#FFFFFF",
+	 vertex.label.cex=0.5,
 	 edge.color=colors_arg,
 	 edge.width=1,
 	 edge.arrow.size=0.5
