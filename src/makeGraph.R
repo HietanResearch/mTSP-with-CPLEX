@@ -10,14 +10,11 @@ routes <- read.csv(routes_filename, header=F)
 
 colors <- c(
 	"#FF4B00",
-	"#FFF100",
-	"#03AF7A",
 	"#005AFF",
+	"#03AF7A",
 	"#4DC4FF",
-	"#FF8082",
 	"#F6AA00",
-	"#990099",
-	"#804000"
+	"#FFF100"
 )
 
 edges_arg <- c()
